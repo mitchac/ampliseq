@@ -357,7 +357,7 @@ if (!params.Q2imported){
 			.from(params.readPaths)
 			.map { row -> [ row[0], [file(row[1][0]), file(row[1][1])], row[2] ] }
 			.ifEmpty { exit 1, "params.readPaths was empty - no input files supplied" }
-			.into { ch_read_pairs; ch_read_pairs_fastqc }
+			.set { ch_read_pairs }
 			
 	} else {
 		//Standard input
@@ -365,7 +365,7 @@ if (!params.Q2imported){
 		Channel
 			.fromFilePairs( params.reads + params.extension, size: 2 )
 			.ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}${params.extension}\nNB: Path needs to be enclosed in quotes!" }
-			.into { ch_read_pairs; ch_read_pairs_fastqc }
+			.set { ch_read_pairs }
 	}
 
 	/*
@@ -378,30 +378,10 @@ if (!params.Q2imported){
 			saveAs: {filename -> filename.indexOf(".zip") > 0 ? "zips/$filename" : "$filename"}
 
 			input:
-			set val(pair_id), file(reads) from ch_read_pairs_fastqc
+			set val(pair_id), file(reads)
 
 			output:
-			file "*_fastqc.{zip,html}" into ch_fastqc_results
-
-			when:
-			!params.skip_fastqc
-
-			script: 
-			"""
-			fastqc -q ${reads}
-			"""
-		}
-	} else {
-		process fastqc_multi {
-			tag "${folder}${params.split}${pair_id}"
-			publishDir "${params.outdir}/fastQC", mode: 'copy',
-			saveAs: {filename -> filename.indexOf(".zip") > 0 ? "zips/$filename" : "$filename"}
-
-			input:
-			set val(pair_id), file(reads), val(folder) from ch_read_pairs_fastqc
-
-			output:
-			file "*_fastqc.{zip,html}" into ch_fastqc_results
+			file "*_fastqc.{zip,html}"
 
 			when:
 			!params.skip_fastqc
