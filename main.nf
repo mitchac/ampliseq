@@ -413,7 +413,7 @@ if (!params.Q2imported){
 		}
 	}
 
-
+}
 
 /*
  * STEP 3 - Output Description HTML
