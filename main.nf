@@ -153,15 +153,15 @@ if (params.onlyDenoising || params.untilQ2import) {
  */
 if (params.metadata) {
 	Channel.fromPath("${params.metadata}", checkIfExists: true)
-		.into { ch_metadata_for_barplot; ch_metadata_for_alphararefaction; ch_metadata_for_diversity_core; ch_metadata_for_alpha_diversity; ch_metadata_for_metadata_category_all; ch_metadata_for_metadata_category_pairwise; ch_metadata_for_beta_diversity; ch_metadata_for_beta_diversity_ordination; ch_metadata_for_ancom; ch_metadata_for_ancom_tax; ch_metadata_for_ancom_asv }
+		.set { ch_metadata }
 } else {
 	Channel.from()
-		.into { ch_metadata_for_barplot; ch_metadata_for_alphararefaction; ch_metadata_for_diversity_core; ch_metadata_for_alpha_diversity; ch_metadata_for_metadata_category_all; ch_metadata_for_metadata_category_pairwise; ch_metadata_for_beta_diversity; ch_metadata_for_beta_diversity_ordination; ch_metadata_for_ancom; ch_metadata_for_ancom_tax; ch_metadata_for_ancom_asv }
+		.set { ch_metadata }
 }
 
 if (params.Q2imported) {
 	Channel.fromPath("${params.Q2imported}", checkIfExists: true)
-		   .into { ch_qiime_demux_import; ch_qiime_demux_vis; ch_qiime_demux_dada }
+		   .set { ch_qiime_demux }
 }
 
 if (params.classifier) {
@@ -280,7 +280,7 @@ process get_software_versions {
 	}
 
 	output:
-	file 'software_versions_mqc.yaml' into ch_software_versions_yaml
+	file 'software_versions_mqc.yaml'
 	file "software_versions.csv"
 
 	script:
