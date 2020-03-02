@@ -395,6 +395,12 @@ if (!params.Q2imported){
 
 }
 
+workflow {
+	fastqc(ch_read_pairs)
+}	
+
+
+
 /*
  * STEP 3 - Output Description HTML
  */
