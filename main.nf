@@ -369,7 +369,7 @@ if (!params.Q2imported){
 	}
 }
 
-//include fastqc from './modules/fastQC.nf'
+include fastqc from './modules/fastQC.nf'
 
 workflow {
 	fastqc(ch_read_pairs)
