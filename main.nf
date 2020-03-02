@@ -367,33 +367,9 @@ if (!params.Q2imported){
 			.ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}${params.extension}\nNB: Path needs to be enclosed in quotes!" }
 			.set { ch_read_pairs }
 	}
-
-	/*
-	 * fastQC
-	 */
-	if (!params.multipleSequencingRuns){
-		process fastqc {
-			tag "${pair_id}"
-			publishDir "${params.outdir}/fastQC", mode: 'copy',
-			saveAs: {filename -> filename.indexOf(".zip") > 0 ? "zips/$filename" : "$filename"}
-
-			input:
-			set val(pair_id), file(reads)
-
-			output:
-			file "*_fastqc.{zip,html}"
-
-			when:
-			!params.skip_fastqc
-
-			script: 
-			"""
-			fastqc -q ${reads}
-			"""
-		}
-	}
-
 }
+
+include fastqc from './modules/fastQC.nf'
 
 workflow {
 	fastqc(ch_read_pairs)
