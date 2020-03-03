@@ -370,9 +370,11 @@ if (!params.Q2imported){
 }
 
 include fastqc from './modules/fastQC.nf'
+include trimming from './modules/trimming.nf'
 
 workflow {
 	fastqc(ch_read_pairs)
+	trimming2(ch_read_pairs)
 }	
 
 
