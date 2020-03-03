@@ -294,80 +294,14 @@ process get_software_versions {
 	scrape_software_versions.py &> software_versions_mqc.yaml
 	"""
 }
+/*
+* Create a channel for input read files
+*/
 
-
-if (!params.Q2imported){
-
-	/*
-	* Create a channel for input read files
-	*/
-	if(params.readPaths && params.reads == "data${params.extension}" && !params.multipleSequencingRuns){
-		//Test input for single sequencing runs, profile = test
-
-		Channel
-			.from(params.readPaths)
-			.map { row -> [ row[0], [file(row[1][0]), file(row[1][1])]] }
-			.ifEmpty { exit 1, "params.readPaths was empty - no input files supplied" }
-			.into { ch_read_pairs; ch_read_pairs_fastqc; ch_read_pairs_name_check }
-
-	} else if ( !params.readPaths && params.multipleSequencingRuns ) {
-		//Standard input for multiple sequencing runs
-
-		//Get files
-		Channel
-			.fromFilePairs( params.reads + "/*" + params.extension, size: 2 )
-			.ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}/*${params.extension}\nNB: Path needs to be enclosed in quotes!" }
-			.into { ch_extract_folders; ch_rename_key }
-
-		//Get folder information
-		ch_extract_folders
-			.flatMap { key, files -> [files[0]] }
-			.map { it.take(it.findLastIndexOf{"/"})[-1] }
-			.unique()
-			.into { ch_count_folders; ch_check_folders; ch_report_folders }
-
-		//Report folders with sequencing files
-		ch_report_folders
-			.collect()
-			.subscribe {
-				String folders = it.toString().replace("[", "").replace("]","") 
-				log.info "\nFound the folder(s) \"$folders\" containing sequencing read files matching \"${params.extension}\" in \"${params.reads}\".\n" }
-
-		//Stop if folder count is 1
-		ch_count_folders
-			.count()
-			.subscribe { if ( it == 1 ) exit 1, "Found only one folder with read data but \"--multipleSequencingRuns\" was specified. Please review data input." }
-		
-		//Stop if folder names contain "_" or "${params.split}"
-		ch_check_folders
-			.subscribe { 
-				if ( it.toString().indexOf("${params.split}") > -1 ) exit 1, "Folder name \"$it\" contains \"${params.split}\", but may not. Please review data input or choose another string using \"--split [str]\" (no underscore allowed!)."
-				if ( it.toString().indexOf("_") > -1 ) exit 1, "Folder name \"$it\" contains \"_\", but may not. Please review data input." 
-			}
-
-		//Add folder information to sequence files
-		ch_rename_key
-			.map { key, files -> [ key, files, (files[0].take(files[0].findLastIndexOf{"/"})[-1]) ] }
-			.into { ch_read_pairs; ch_read_pairs_fastqc }
-
-	} else if ( params.readPaths && params.multipleSequencingRuns ) {
-		//Test input for multiple sequencing runs, profile = test_multi
-
-		Channel
-			.from(params.readPaths)
-			.map { row -> [ row[0], [file(row[1][0]), file(row[1][1])], row[2] ] }
-			.ifEmpty { exit 1, "params.readPaths was empty - no input files supplied" }
-			.set { ch_read_pairs }
-			
-	} else {
-		//Standard input
-
-		Channel
-			.fromFilePairs( params.reads + params.extension, size: 2 )
-			.ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}${params.extension}\nNB: Path needs to be enclosed in quotes!" }
-			.set { ch_read_pairs }
-	}
-}
+Channel
+	.fromFilePairs( params.reads + params.extension, size: 2 )
+	.ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}${params.extension}\nNB: Path needs to be enclosed in quotes!" }
+	.set { ch_read_pairs }
 
 include fastqc from './modules/fastQC.nf'
 include trimming from './modules/trimming.nf'
@@ -376,6 +310,20 @@ workflow {
 	fastqc(ch_read_pairs)
 	trimming(ch_read_pairs)
 }	
+
+/*
+* Produce manifest file for QIIME2
+*/
+ch_trimmed
+	.map { forward, reverse -> [ forward.drop(forward.findLastIndexOf{"/"})[0], forward, reverse ] } //extract file name
+	.map { name, forward, reverse -> [ name.toString().take(name.toString().indexOf("_")), forward, reverse ] } //extract sample name
+	.map { name, forward, reverse -> [ name +","+ forward + ",forward\n" + name +","+ reverse +",reverse" ] } //prepare basic synthax
+	.flatten()
+	.collectFile(name: 'manifest.txt', newLine: true, storeDir: "${params.outdir}/demux", seed: "sample-id,absolute-filepath,direction")
+	.set { ch_manifest }
+	
+
+
 
 
 
