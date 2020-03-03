@@ -314,7 +314,7 @@ workflow {
 /*
 * Produce manifest file for QIIME2
 */
-ch_trimmed
+ch_trimmed_reads
 	.map { forward, reverse -> [ forward.drop(forward.findLastIndexOf{"/"})[0], forward, reverse ] } //extract file name
 	.map { name, forward, reverse -> [ name.toString().take(name.toString().indexOf("_")), forward, reverse ] } //extract sample name
 	.map { name, forward, reverse -> [ name +","+ forward + ",forward\n" + name +","+ reverse +",reverse" ] } //prepare basic synthax
