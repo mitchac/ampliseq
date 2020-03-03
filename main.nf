@@ -374,7 +374,7 @@ include trimming from './modules/trimming.nf'
 
 workflow {
 	fastqc(ch_read_pairs)
-	trimming2(ch_read_pairs)
+	trimming(ch_read_pairs)
 }	
 
 
