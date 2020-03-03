@@ -10,7 +10,7 @@ process trimming {
 			set val(pair_id), file(reads)
 		
 			output:
-			file "trimmed/*.*" set { ch_trimmed_reads }
+			file "trimmed/*.*", emit: trimmed_reads
 			file "cutadapt_log_*.txt"
 
 			script:
