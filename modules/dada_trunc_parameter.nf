@@ -1,7 +1,7 @@
 process dada_trunc_parameter { 
 
 	input:
-	file summary_demux from ch_csv_demux 
+	file summary_demux 
 
 	output:
 	stdout ch_dada_trunc
