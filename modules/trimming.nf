@@ -10,7 +10,7 @@ process trimming {
 			set val(pair_id), file(reads)
 		
 			output:
-			set val(sample_name), file "trimmed/*.*"
+			file "trimmed/*.*"
 			file "cutadapt_log_*.txt"
 
 			script:
