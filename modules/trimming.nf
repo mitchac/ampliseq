@@ -1,4 +1,3 @@
-nextflow.preview.dsl=2
 process trimming {
 			tag "${pair_id}"  
 			publishDir "${params.outdir}/trimmed", mode: 'copy',
@@ -11,7 +10,8 @@ process trimming {
 			set val(pair_id), file(reads)
 		
 			output:
-			file "trimmed/*.*", emit: trimmed_reads
+			set val(sample_name), file "trimmed/*.*", emit: named_fastq
+			//file "trimmed/*.*", emit: trimmed_reads
 			file "cutadapt_log_*.txt"
 
 			script:
