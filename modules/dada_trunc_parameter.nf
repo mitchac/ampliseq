@@ -4,7 +4,7 @@ process dada_trunc_parameter {
 	file summary_demux 
 
 	output:
-	stdout ch_dada_trunc
+	stdout()
 
 	when:
 	!params.untilQ2import
