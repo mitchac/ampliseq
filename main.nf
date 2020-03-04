@@ -305,6 +305,7 @@ Channel
 
 include fastqc from './modules/fastQC.nf'
 include trimming from './modules/trimming.nf'
+include qiime_import from './modules/qiime_import.nf'
 
 workflow {
 	fastqc(ch_read_pairs)
