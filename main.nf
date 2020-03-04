@@ -328,7 +328,7 @@ workflow {
 
 	qiime_import(ch_manifest,ch_mpl)
 	qiime_demux_visualize(qiime_import.out,ch_mpl)
-	dada_trunc_parameter(qiime_demux_visualize[0])
+	dada_trunc_parameter(qiime_demux_visualize.out[0])
 
 }	
 
