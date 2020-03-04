@@ -309,15 +309,15 @@ include trimming from './modules/trimming.nf'
 workflow {
 	fastqc(ch_read_pairs)
 	trimming(ch_read_pairs)
-/*
-trimming.out.trimmed_reads
+
+trimming.out[0]
 	.map { forward, reverse -> [ forward.drop(forward.findLastIndexOf{"/"})[0], forward, reverse ] } //extract file name
 	.map { name, forward, reverse -> [ name.toString().take(name.toString().indexOf("_")), forward, reverse ] } //extract sample name
 	.map { name, forward, reverse -> [ name +","+ forward + ",forward\n" + name +","+ reverse +",reverse" ] } //prepare basic synthax
 	.flatten()
 	.collectFile(name: 'manifest.txt', newLine: true, storeDir: "${params.outdir}/demux", seed: "sample-id,absolute-filepath,direction")
 	.set { ch_manifest }
-*/
+
 
 
 }	
