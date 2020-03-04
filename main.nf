@@ -310,15 +310,17 @@ workflow {
 	fastqc(ch_read_pairs)
 	trimming(ch_read_pairs)
 
-trimming.out[0]
-	.map { forward, reverse -> [ forward.drop(forward.findLastIndexOf{"/"})[0], forward, reverse ] } //extract file name
-	.map { name, forward, reverse -> [ name.toString().take(name.toString().indexOf("_")), forward, reverse ] } //extract sample name
-	.map { name, forward, reverse -> [ name +","+ forward + ",forward\n" + name +","+ reverse +",reverse" ] } //prepare basic synthax
-	.flatten()
-	.collectFile(name: 'manifest.txt', newLine: true, storeDir: "${params.outdir}/demux", seed: "sample-id,absolute-filepath,direction")
-	.set { ch_manifest }
 
+// nb 'out' from process with mult outputs is list so using [0] to access first element of list 
+	trimming.out[0]
+		.map { forward, reverse -> [ forward.drop(forward.findLastIndexOf{"/"})[0], forward, reverse ] } //extract file name
+		.map { name, forward, reverse -> [ name.toString().take(name.toString().indexOf("_")), forward, reverse ] } //extract sample name
+		.map { name, forward, reverse -> [ name +","+ forward + ",forward\n" + name +","+ reverse +",reverse" ] } //prepare basic synthax
+		.flatten()
+		.collectFile(name: 'manifest.txt', newLine: true, storeDir: "${params.outdir}/demux", seed: "sample-id,absolute-filepath,direction")
+		.set { ch_manifest }
 
+	qiime_import(ch_manifest,ch_mpl)
 
 }	
 
