@@ -298,6 +298,7 @@ process get_software_versions {
 include fastqc from './modules/fastQC.nf'
 include trimming from './modules/trimming.nf'
 include qiime_import from './modules/qiime_import.nf'
+include qiime_demux_visualize from './modules/qiime_demux_visualize.nf'
 
 workflow {
 
@@ -325,6 +326,7 @@ workflow {
 		.set { ch_manifest }
 
 	qiime_import(ch_manifest,ch_mpl)
+	qiime_demux_visualize(qiime_import.out,ch_mpl)
 
 }	
 
