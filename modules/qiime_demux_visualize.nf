@@ -7,7 +7,7 @@ process qiime_demux_visualize {
         env(MATPLOTLIBRC)
 
 		output:
-		file("${demux.baseName}/*-seven-number-summaries.csv") into ch_csv_demux
+		file("${demux.baseName}/*-seven-number-summaries.csv")
 		file("${demux.baseName}/*")
 	  
 		"""
