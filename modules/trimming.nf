@@ -1,3 +1,4 @@
+nextflow.preview.dsl=2
 process trimming {
 			tag "${pair_id}"  
 			publishDir "${params.outdir}/trimmed", mode: 'copy',
