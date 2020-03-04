@@ -299,6 +299,7 @@ include fastqc from './modules/fastQC.nf'
 include trimming from './modules/trimming.nf'
 include qiime_import from './modules/qiime_import.nf'
 include qiime_demux_visualize from './modules/qiime_demux_visualize.nf'
+include dada_trunc_parameter from './modules/dada_trunc_parameter.nf'
 
 workflow {
 
@@ -327,6 +328,7 @@ workflow {
 
 	qiime_import(ch_manifest,ch_mpl)
 	qiime_demux_visualize(qiime_import.out,ch_mpl)
+	dada_trunc_parameter(qiime_demux_visualize[0])
 
 }	
 
