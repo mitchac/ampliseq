@@ -309,7 +309,7 @@ include trimming from './modules/trimming.nf'
 workflow {
 	fastqc(ch_read_pairs)
 	trimming(ch_read_pairs)
-
+/*
 trimming.out.trimmed_reads
 	.map { forward, reverse -> [ forward.drop(forward.findLastIndexOf{"/"})[0], forward, reverse ] } //extract file name
 	.map { name, forward, reverse -> [ name.toString().take(name.toString().indexOf("_")), forward, reverse ] } //extract sample name
@@ -317,7 +317,7 @@ trimming.out.trimmed_reads
 	.flatten()
 	.collectFile(name: 'manifest.txt', newLine: true, storeDir: "${params.outdir}/demux", seed: "sample-id,absolute-filepath,direction")
 	.set { ch_manifest }
-
+*/
 
 
 }	
