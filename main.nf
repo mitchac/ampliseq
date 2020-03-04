@@ -294,25 +294,28 @@ process get_software_versions {
 	scrape_software_versions.py &> software_versions_mqc.yaml
 	"""
 }
-/*
-* Create a channel for input read files
-*/
-
-Channel
-	.fromFilePairs( params.reads + params.extension, size: 2 )
-	.ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}${params.extension}\nNB: Path needs to be enclosed in quotes!" }
-	.set { ch_read_pairs }
 
 include fastqc from './modules/fastQC.nf'
 include trimming from './modules/trimming.nf'
 include qiime_import from './modules/qiime_import.nf'
 
 workflow {
+
+	/*
+	* Create a channel for input read files
+	*/
+	Channel
+		.fromFilePairs( params.reads + params.extension, size: 2 )
+		.ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}${params.extension}\nNB: Path needs to be enclosed in quotes!" }
+		.set { ch_read_pairs }
+
 	fastqc(ch_read_pairs)
 	trimming(ch_read_pairs)
 
-
-// nb 'out' from process with mult outputs is list so using [0] to access first element of list 
+	/*
+	* Produce manifest file for QIIME2
+	*/
+	// nb 'out' from process with mult outputs is list so using [0] to access first element of list 
 	trimming.out[0]
 		.map { forward, reverse -> [ forward.drop(forward.findLastIndexOf{"/"})[0], forward, reverse ] } //extract file name
 		.map { name, forward, reverse -> [ name.toString().take(name.toString().indexOf("_")), forward, reverse ] } //extract sample name
