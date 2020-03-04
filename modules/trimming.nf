@@ -10,7 +10,7 @@ process trimming {
 			set val(pair_id), file(reads)
 		
 			output:
-			set val(sample_name), file "trimmed/*.*"  emit: named_fastq
+			set val(sample_name), file "trimmed/*.*"  emit: sample_name
 			//file "trimmed/*.*", emit: trimmed_reads
 			file "cutadapt_log_*.txt"
 
