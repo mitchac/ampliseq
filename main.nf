@@ -308,13 +308,13 @@ workflow {
 	/*
 	* Create a channel for input read files
 	*/
-	//Channel
-	//	.fromFilePairs( params.reads + params.extension, size: 2 )
-	//	.ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}${params.extension}\nNB: Path needs to be enclosed in quotes!" }
-	//	.set { ch_read_pairs }
+	Channel
+		.fromFilePairs( params.reads + params.extension, size: 2 )
+		.ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}${params.extension}\nNB: Path needs to be enclosed in quotes!" }
+		.set { ch_read_pairs }
 
 	//fastqc(ch_read_pairs)
-	//trimming(ch_read_pairs)
+	trimming(ch_read_pairs)
 
 	/*
 	* Produce manifest file for QIIME2
@@ -332,7 +332,21 @@ workflow {
 	//qiime_demux_visualize(qiime_import.out,ch_mpl)
 	//dada_trunc_parameter(qiime_demux_visualize.out[0])
 	//dada_single(qiime_import.out,dada_trunc_parameter.out,ch_mpl)
+
+	/*
+	* Produce manifest file for QIIME2
+	*/
+	// nb 'out' from process with mult outputs is list so using [0] to access first element of list 
+	trimming.out[0]
+		.map { forward, reverse -> [ forward.drop(forward.findLastIndexOf{"/"})[0], forward, reverse ] } //extract file name
+		.map { name, forward, reverse -> [ name.toString().take(name.toString().indexOf("_")), forward, reverse ] } //extract sample name
+		.map { name, forward, reverse -> [ name +","+ forward + ",forward\n" + name +","+ reverse +",reverse" ] } //prepare basic synthax
+		.set { trimmed_reads }
+
+
+
 	rtest()
+	rdada(trimmed_reads)
 
 }	
 
