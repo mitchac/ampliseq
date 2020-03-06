@@ -10,7 +10,7 @@ process rtest {
     script:
     """
     #!/usr/bin/env Rscript
-    message ("Print this on the screen")
+    print ("Print this on the screen")
     library('dada2');
     """
 }
