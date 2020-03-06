@@ -2,7 +2,7 @@ process rdada {
     publishDir "${params.outdir}/rtest", mode: 'copy'
               
     input:
-        set name, file(R1), file(R2)
+        set name, file(R1), fwd, file(R2), rev
     //set val(pair_id), file(reads)
 
     output:
