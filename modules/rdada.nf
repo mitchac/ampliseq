@@ -1,12 +1,13 @@
 process rdada {
-    publishDir "${params.outdir}/rtest", mode: 'copy'
+    publishDir "${params.outdir}/rdada", mode: 'copy'
               
     input:
     set name, file(R1), file(R2)
     //set val(pair_id), file(reads)
 
     output:
-    //file "outfile.txt"
+    file("${R1.getSimpleName()}.dada2.ft.fq.gz")
+    //  file "outfile.txt"
 
     script:
     """
