@@ -302,6 +302,7 @@ include qiime_demux_visualize from './modules/qiime_demux_visualize.nf'
 include dada_trunc_parameter from './modules/dada_trunc_parameter.nf'
 include dada_single from './modules/dada_single.nf'
 include rtest from './modules/rtest.nf'
+include rdada from './modules/rdada.nf'
 
 workflow {
 
