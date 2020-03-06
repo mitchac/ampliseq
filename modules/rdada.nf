@@ -6,7 +6,7 @@ process rdada {
     //set val(pair_id), file(reads)
 
     output:
-    file "outfile.txt"
+    //file "outfile.txt"
 
     script:
     """
