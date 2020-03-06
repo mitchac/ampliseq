@@ -7,7 +7,7 @@ process rtest {
     //set val(pair_id), file(reads)
 
     output:
-    //file "*_fastqc.{zip,html}"
+    file "outfile.txt"
 
     script:
     """
