@@ -6,6 +6,7 @@ process rdada {
     //set val(pair_id), file(reads)
 
     output:
+    file("${R2.getSimpleName()}.dada2.ft.fq.gz")
     file("${R1.getSimpleName()}.dada2.ft.fq.gz")
     //  file "outfile.txt"
 
