@@ -11,6 +11,6 @@ process rtest {
     """
     #!/usr/bin/env Rscript
     message ("Print this on the screen")
-    library('dada2');
+    library('dada3');
     """
 }
