@@ -301,36 +301,38 @@ include qiime_import from './modules/qiime_import.nf'
 include qiime_demux_visualize from './modules/qiime_demux_visualize.nf'
 include dada_trunc_parameter from './modules/dada_trunc_parameter.nf'
 include dada_single from './modules/dada_single.nf'
+include rtest from './modules/rtest.nf'
 
 workflow {
 
 	/*
 	* Create a channel for input read files
 	*/
-	Channel
-		.fromFilePairs( params.reads + params.extension, size: 2 )
-		.ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}${params.extension}\nNB: Path needs to be enclosed in quotes!" }
-		.set { ch_read_pairs }
+	//Channel
+	//	.fromFilePairs( params.reads + params.extension, size: 2 )
+	//	.ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}${params.extension}\nNB: Path needs to be enclosed in quotes!" }
+	//	.set { ch_read_pairs }
 
-	fastqc(ch_read_pairs)
-	trimming(ch_read_pairs)
+	//fastqc(ch_read_pairs)
+	//trimming(ch_read_pairs)
 
 	/*
 	* Produce manifest file for QIIME2
 	*/
 	// nb 'out' from process with mult outputs is list so using [0] to access first element of list 
-	trimming.out[0]
-		.map { forward, reverse -> [ forward.drop(forward.findLastIndexOf{"/"})[0], forward, reverse ] } //extract file name
-		.map { name, forward, reverse -> [ name.toString().take(name.toString().indexOf("_")), forward, reverse ] } //extract sample name
-		.map { name, forward, reverse -> [ name +","+ forward + ",forward\n" + name +","+ reverse +",reverse" ] } //prepare basic synthax
-		.flatten()
-		.collectFile(name: 'manifest.txt', newLine: true, storeDir: "${params.outdir}/demux", seed: "sample-id,absolute-filepath,direction")
-		.set { ch_manifest }
+	//trimming.out[0]
+	//	.map { forward, reverse -> [ forward.drop(forward.findLastIndexOf{"/"})[0], forward, reverse ] } //extract file name
+	//	.map { name, forward, reverse -> [ name.toString().take(name.toString().indexOf("_")), forward, reverse ] } //extract sample name
+	//	.map { name, forward, reverse -> [ name +","+ forward + ",forward\n" + name +","+ reverse +",reverse" ] } //prepare basic synthax
+	//	.flatten()
+	//	.collectFile(name: 'manifest.txt', newLine: true, storeDir: "${params.outdir}/demux", seed: "sample-id,absolute-filepath,direction")
+	//	.set { ch_manifest }
 
-	qiime_import(ch_manifest,ch_mpl)
-	qiime_demux_visualize(qiime_import.out,ch_mpl)
-	dada_trunc_parameter(qiime_demux_visualize.out[0])
-	dada_single(qiime_import.out,dada_trunc_parameter.out,ch_mpl)
+	//qiime_import(ch_manifest,ch_mpl)
+	//qiime_demux_visualize(qiime_import.out,ch_mpl)
+	//dada_trunc_parameter(qiime_demux_visualize.out[0])
+	//dada_single(qiime_import.out,dada_trunc_parameter.out,ch_mpl)
+	rtest()
 
 }	
 
