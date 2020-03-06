@@ -15,14 +15,14 @@ process rdada {
     filterAndTrim(
         '${R1}', '${R1.getSimpleName()}.dada2.ft.fq.gz',
         '${R2}', '${R2.getSimpleName()}.dada2.ft.fq.gz',
-        trimLeft = ${params.trimLeft},
-        maxN = ${params.maxN},
-        maxEE = ${params.maxEE},
-        truncLen = c(${params.truncLenF}, ${params.truncLenR}),
-        truncQ = ${params.truncQ},
-        compress = TRUE,
-        verbose = TRUE,
-        multithread = ${task.cpus}
+        #trimLeft = ${params.trimLeft},
+        #maxN = ${params.maxN},
+        #maxEE = ${params.maxEE},
+        #truncLen = c(${params.truncLenF}, ${params.truncLenR}),
+        #truncQ = ${params.truncQ},
+        #compress = TRUE,
+        #verbose = TRUE,
+        #multithread = ${task.cpus}
     )
     """
 }
