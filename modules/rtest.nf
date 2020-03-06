@@ -12,5 +12,7 @@ process rtest {
     #!/usr/bin/env Rscript
     print ("Print this on the screen")
     library('dada2');
+    txt <- c("Hallo", "World")
+    writeLines(txt, "outfile.txt")
     """
 }
