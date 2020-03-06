@@ -1,5 +1,7 @@
 
 process rtest {
+    publishDir "${params.output}/rtest", mode: 'copy'
+
                         
     input:
     //set val(pair_id), file(reads)
