@@ -1,6 +1,6 @@
 
 process rtest {
-    publishDir "${params.output}/rtest", mode: 'copy'
+    publishDir "${params.outdir}/rtest", mode: 'copy'
 
                         
     input:
