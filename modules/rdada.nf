@@ -3,7 +3,7 @@ process rdada {
     //conda 'bioconda::bioconductor-dada2'
     //container 'biocontainers/bioconductor-dada2'
     //container 'golob/dada2'
-    container 'golob/dada2:1.12.0.ub.1804__bcw.0.3.1'
+    //container 'golob/dada2:1.12.0.ub.1804__bcw.0.3.1'
 
     input:
     set name, file(R1), file(R2)
