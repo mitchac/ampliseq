@@ -6,7 +6,7 @@ process rdada {
     container 'golob/dada2:1.12.0.ub.1804__bcw.0.3.1'
 
     input:
-    set name, file(R1), file(R2)
+    tuple name, file(R1), file(R2)
     //set val(pair_id), file(reads)
 
     output:
