@@ -23,7 +23,9 @@ process rdada {
         '${R2}', '${R2.getSimpleName()}.dada2.ft.fq.gz'
     )
 
+    filtsF <- list.files(filtered.dirF, pattern=".fastq.gz$", full.names=TRUE)
+
     //errF <- suppressWarnings(learnErrors(filtsF))
-    errF <- suppressWarnings(learnErrors(${R2.getSimpleName()}.dada2.ft.fq.gz))
+    errF <- learnErrors(${R2.getSimpleName()}.dada2.ft.fq.gz)
     """
 }
