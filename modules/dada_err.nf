@@ -11,6 +11,6 @@ process dada_err {
     """
     #!/usr/bin/env Rscript
 
-    filtsF <- list.files("/data/my-pipelines/nf-core/ampliseq/results/rdada", pattern=".fastq.gz$", full.names=TRUE);
+    #filtsF <- list.files("/data/my-pipelines/nf-core/ampliseq/results/rdada", pattern=".fastq.gz$", full.names=TRUE);
     """
 }
