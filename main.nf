@@ -352,7 +352,7 @@ workflow {
 
 
 
-	rdada.out
+	rdada.out[0]
     .filter {
         r -> ( !file(r[0]).isEmpty() & !file(r[1]).isEmpty() )
     }
