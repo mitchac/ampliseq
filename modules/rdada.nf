@@ -22,6 +22,5 @@ process rdada {
         '${R1}', '${R1.getSimpleName()}.dada2.ft.fq.gz',
         '${R2}', '${R2.getSimpleName()}.dada2.ft.fq.gz'
     );
-    filtsF <- list.files("/data/my-pipelines/nf-core/ampliseq/results/rdada", pattern=".fastq.gz$", full.names=TRUE);
     """
 }
