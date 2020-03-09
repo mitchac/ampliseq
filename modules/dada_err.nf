@@ -5,9 +5,6 @@ process dada_err {
     input:
     set name, file(R1), file(R2)
 
-    output:
-    file "outfile.txt"
-
     script:
     """
     #!/usr/bin/env Rscript
