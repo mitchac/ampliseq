@@ -1,10 +1,13 @@
 process dada_err {
-    publishDir "${params.outdir}/rdada_err", mode: 'copy'
+    publishDir "${params.outdir}/rdada_derep", mode: 'copy'
     container 'golob/dada2:1.12.0.ub.1804__bcw.0.3.1'
 
     input:
     set file(R1), file(R2)
 
+    output:
+        tuple file("${R1.getSimpleName()}.dada2.ft.derep.rds"), file("${R2.getSimpleName()}.dada2.ft.derep.rds")
+        
     script:
     """
     #!/usr/bin/env Rscript
