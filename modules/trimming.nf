@@ -1,5 +1,4 @@
 process trimming {
-			container 'golob/dada2:1.12.0.ub.1804__bcw.0.3.1'
 			tag "${pair_id}"  
 			publishDir "${params.outdir}/trimmed", mode: 'copy',
 				saveAs: {filename -> 
