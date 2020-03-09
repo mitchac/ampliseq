@@ -348,6 +348,7 @@ workflow {
 
 	rtest()
 	rdada(trimmed_reads)
+	dada_err(trimmed_reads)
 
 }	
 
