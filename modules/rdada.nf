@@ -1,7 +1,8 @@
 process rdada {
     publishDir "${params.outdir}/rdada", mode: 'copy'
-    conda 'bioconda::bioconductor-dada2'
-              
+    //conda 'bioconda::bioconductor-dada2'
+    docker 'biocontainers/bioconductor-dada2'
+
     input:
     set name, file(R1), file(R2)
     //set val(pair_id), file(reads)
