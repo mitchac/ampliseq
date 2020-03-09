@@ -358,7 +358,7 @@ workflow {
     }
     .set { non_empty_reads }
 
-	//dada_err(trimmed_reads)
+	dada_err(non_empty_reads)
 
 }	
 
