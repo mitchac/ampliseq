@@ -5,12 +5,12 @@ process dada_err {
     input:
     set name, file(R1), file(R2)
 
-    output:
-
     script:
     """
     #!/usr/bin/env Rscript
-
+    library('dada2');
+    print ("Print this on the screen")
+    
     #filtsF <- list.files("/data/my-pipelines/nf-core/ampliseq/results/rdada", pattern=".fastq.gz$", full.names=TRUE);
     """
 }
