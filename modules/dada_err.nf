@@ -6,6 +6,7 @@ process dada_err {
     set name, file(R1), file(R2)
 
     output:
+    file "outfile.txt"
 
     script:
     """
