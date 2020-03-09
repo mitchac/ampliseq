@@ -7,7 +7,7 @@ process trimming {
 				else null}
 		
 			input:
-			set val(pair_id), file(reads)
+			tuple val(pair_id), file(reads)
 		
 			output:
 			file "trimmed/*.*"
