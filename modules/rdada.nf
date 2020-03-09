@@ -21,6 +21,6 @@ process rdada {
     filterAndTrim(
         '${R1}', '${R1.getSimpleName()}.dada2.ft.fq.gz',
         '${R2}', '${R2.getSimpleName()}.dada2.ft.fq.gz'
-    )
+    );
     """
 }
