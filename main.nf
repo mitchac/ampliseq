@@ -303,6 +303,7 @@ include dada_trunc_parameter from './modules/dada_trunc_parameter.nf'
 include dada_single from './modules/dada_single.nf'
 include rtest from './modules/rtest.nf'
 include rdada from './modules/rdada.nf'
+include dada_err from './modules/dada_err.nf'
 
 workflow {
 
