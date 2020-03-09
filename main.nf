@@ -349,7 +349,16 @@ workflow {
 
 	rtest()
 	rdada(trimmed_reads)
-	dada_err(trimmed_reads)
+
+
+
+	rdada.out
+    .filter {
+        r -> ( !file(r[0]).isEmpty() & !file(r[1]).isEmpty() )
+    }
+    .set non_empty_reads
+
+	//dada_err(trimmed_reads)
 
 }	
 
