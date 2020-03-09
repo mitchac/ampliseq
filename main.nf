@@ -356,7 +356,7 @@ workflow {
     .filter {
         r -> ( !file(r[0]).isEmpty() & !file(r[1]).isEmpty() )
     }
-    .set non_empty_reads
+    .set { non_empty_reads }
 
 	//dada_err(trimmed_reads)
 
