@@ -9,7 +9,10 @@ process dada_err {
     """
     #!/usr/bin/env Rscript
     library('dada2');
-    print ("Print this on the screen")
+    derep_1 <- derepFastq('${R1}');
+    saveRDS(derep_1, '${R1.getSimpleName()}.dada2.ft.derep.rds');
+    derep_2 <- derepFastq('${R2}');
+    saveRDS(derep_2, '${R2.getSimpleName()}.dada2.ft.derep.rds');
    
     """
 }
