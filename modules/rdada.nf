@@ -22,5 +22,8 @@ process rdada {
         '${R1}', '${R1.getSimpleName()}.dada2.ft.fq.gz',
         '${R2}', '${R2.getSimpleName()}.dada2.ft.fq.gz'
     )
+
+    //errF <- suppressWarnings(learnErrors(filtsF))
+    errF <- suppressWarnings(learnErrors(${R2.getSimpleName()}.dada2.ft.fq.gz))
     """
 }
