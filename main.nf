@@ -362,12 +362,12 @@ workflow {
 
 	rdada2_derep(non_empty_reads)
 
-	//identity(rdada2_derep.out)
+	identity(rdada2_derep.out)
 
 	
 	rdada2_derep.out
-		.flatten()
 		.mix(rdada2_learnerrors.out)
+		.flatten()
     	.map { file ->
         	def key = file.name.toString().tokenize('.').get(0)
 			//def key = file.name.getSimpleName()
