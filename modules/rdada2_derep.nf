@@ -6,7 +6,7 @@ process rdada2_derep {
     tuple file(R1), file(R2)
 
     output:
-    tuple file(R1), file("${R1.getSimpleName()}.derep.rds"), file(R2), file("${R2.getSimpleName()}.derep.rds")
+    tuple file("${R1.getSimpleName()}.derep.rds"), file("${R2.getSimpleName()}.derep.rds")
         
     script:
     """
