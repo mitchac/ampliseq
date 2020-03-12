@@ -306,6 +306,7 @@ include rdada2_filterandtrim from './modules/rdada2_filterandtrim.nf'
 include rdada2_derep from './modules/rdada2_derep.nf'
 include rdada2_denoise from './modules/rdada2_denoise.nf'
 include rdada2_learnerrors from './modules/rdada2_learnerrors.nf'
+include identity from './modules/identity.nf'
 
 workflow {
 
@@ -372,7 +373,9 @@ workflow {
     	.set{ groups_ch }
 
 
-	rdada2_denoise(groups_ch)
+	identity(groups_ch)
+
+	//rdada2_denoise(groups_ch)
 
 }	
 
