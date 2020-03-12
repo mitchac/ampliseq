@@ -1,5 +1,5 @@
 process rdada2_filterandtrim {
-    publishDir "${params.outdir}/rdada", mode: 'copy'
+    publishDir "${params.outdir}/rdada2_filterandtrim", mode: 'copy'
     //conda 'bioconda::bioconductor-dada2'
     //container 'biocontainers/bioconductor-dada2'
     //container 'golob/dada2'

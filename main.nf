@@ -305,6 +305,7 @@ include dada_single from './modules/dada_single.nf'
 include rdada2_filterandtrim from './modules/rdada2_filterandtrim.nf'
 include rdada2_derep from './modules/rdada2_derep.nf'
 include rdada2_denoise from './modules/rdada2_denoise.nf'
+include rdada2_learnerrors from './modules/rdada2_learnerrors.nf'
 
 workflow {
 
@@ -355,6 +356,7 @@ workflow {
     		}
     	.set { non_empty_reads }
 
+	rdada2_learnerrors(non_empty_reads)
 	rdada2_derep(non_empty_reads)
 	rdada2_denoise(rdada2_derep.out)
 
