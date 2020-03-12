@@ -2,7 +2,7 @@ process identity {
 			publishDir "${params.outdir}/identity", mode: 'copy'
 			
 			input:
-			f1
+			file(f1[0])
 
 			output:
 			//file "${f1}"
@@ -10,7 +10,7 @@ process identity {
 
 			script: 
 			"""
-            echo ${f1[0]}
-            echo ${f2[0]}
+            //echo ${f1[0]}
+            //echo ${f2[0]}
 			"""
 		}
