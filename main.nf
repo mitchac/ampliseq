@@ -358,7 +358,7 @@ workflow {
     		}
     	.set { non_empty_reads }
 
-	rdada2_learnerrors(non_empty_reads)
+	//rdada2_learnerrors(non_empty_reads)
 
 	rdada2_derep(non_empty_reads)
 
@@ -378,7 +378,7 @@ workflow {
     	.set{ groups_ch }
 
 
-	identity(groups_ch)
+	//identity(groups_ch)
 
 	//rdada2_denoise(groups_ch)
 
