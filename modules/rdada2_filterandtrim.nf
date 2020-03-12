@@ -18,8 +18,8 @@ process rdada2_filterandtrim {
     #!/usr/bin/env Rscript
     library('dada2'); 
     filterAndTrim(
-        '${R1}', '${R1.getSimpleName()}.dada2.ft.fq.gz',
-        '${R2}', '${R2.getSimpleName()}.dada2.ft.fq.gz'
+        '${R1}', '${R1.getSimpleName()}.gz',
+        '${R2}', '${R2.getSimpleName()}.gz'
     );
     """
 }
