@@ -367,7 +367,7 @@ workflow {
 	
 	rdada2_derep.out
 		.flatten()
-		//.mix(rdada2_learnerrors.out)
+		.mix(rdada2_learnerrors.out)
     	.map { file ->
         	def key = file.name.toString().tokenize('.').get(0)
 			//def key = file.name.getSimpleName()

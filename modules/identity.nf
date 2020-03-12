@@ -2,14 +2,15 @@ process identity {
 			publishDir "${params.outdir}/identity", mode: 'copy'
 			
 			input:
-			tuple file(i1), file(i2), file(i3), file(i4)
+			tuple file(i1), file(i2)
 
 			output:
-			//file "${f1}"
-            //file "${f2}"
+			file "${i1}"
+            file "${i2}"
 
 			script: 
 			"""
             echo ${i1}
+            echo ${i2}
 			"""
 		}
