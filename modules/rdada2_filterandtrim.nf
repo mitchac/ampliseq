@@ -10,7 +10,7 @@ process rdada2_filterandtrim {
     //set val(pair_id), file(reads)
 
     output:
-    tuple file("${R2.getSimpleName()}.gz"), file("${R1.getSimpleName()}.gz")
+    tuple file("${R2.getSimpleName()}.ft.gz"), file("${R1.getSimpleName()}.ft.gz")
     //  file "outfile.txt"
 
     script:
@@ -18,8 +18,8 @@ process rdada2_filterandtrim {
     #!/usr/bin/env Rscript
     library('dada2'); 
     filterAndTrim(
-        '${R1}', '${R1.getSimpleName()}.gz',
-        '${R2}', '${R2.getSimpleName()}.gz'
+        '${R1}', '${R1.getSimpleName()}.ft.gz',
+        '${R2}', '${R2.getSimpleName()}.ft.gz'
     );
     """
 }
