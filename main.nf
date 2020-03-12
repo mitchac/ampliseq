@@ -376,7 +376,7 @@ workflow {
 		.map { key, file -> file
      	}
     	.set{ groups_ch }
-	*/
+	
 
 	identity(groups_ch)
 
