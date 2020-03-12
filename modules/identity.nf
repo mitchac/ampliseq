@@ -2,7 +2,7 @@ process identity {
 			publishDir "${params.outdir}/identity", mode: 'copy'
 			
 			input:
-			tuple file(f1), file(f2)
+			f1
 
 			output:
 			//file "${f1}"
