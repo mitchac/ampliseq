@@ -9,6 +9,6 @@ process identity {
 
 			script: 
 			"""
-			cat ${f1} >> ${f1}
+			echo ${f1} >> ${f1}
 			"""
 		}
