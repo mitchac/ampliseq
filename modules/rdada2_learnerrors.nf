@@ -14,8 +14,8 @@ process rdada2_learnerrors {
     #!/usr/bin/env Rscript
     library('dada2');
 
-    //#errF <- learnErrors('${R1}')
-    #saveRDS(errF, '${R1.getSimpleName()}.rds');
+    errF <- learnErrors('${R1}')
+    saveRDS(errF, '${R1.getSimpleName()}.rds');
 
     """
 }
