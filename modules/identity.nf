@@ -5,8 +5,8 @@ process identity {
 			tuple file(f1), file(f2)
 
 			output:
-			file "${f1}"
-            file "${f2}"
+			//file "${f1}"
+            //file "${f2}"
 
 			script: 
 			"""
