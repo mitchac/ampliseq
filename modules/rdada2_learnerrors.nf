@@ -3,8 +3,8 @@ process rdada2_learnerrors {
     container 'golob/dada2:1.12.0.ub.1804__bcw.0.3.1'
 
     input:
-    //tuple file(R1), file(R2)
-    file_pair
+    tuple file(R1), file(R2)
+    //file_pair
 
     output:
     file("${R1.getSimpleName()}.rds")
