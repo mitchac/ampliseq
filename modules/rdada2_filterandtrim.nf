@@ -10,7 +10,7 @@ process rdada2_filterandtrim {
     //set val(pair_id), file(reads)
 
     output:
-    tuple file("${R2.getSimpleName()}.dada2.ft.fq.gz"), file("${R1.getSimpleName()}.dada2.ft.fq.gz")
+    tuple file("${R2.getSimpleName()}.gz"), file("${R1.getSimpleName()}.gz")
     //  file "outfile.txt"
 
     script:
