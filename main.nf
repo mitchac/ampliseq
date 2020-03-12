@@ -358,11 +358,11 @@ workflow {
     		}
     	.set { non_empty_reads }
 
-	//rdada2_learnerrors(non_empty_reads)
+	rdada2_learnerrors(non_empty_reads)
 
 	rdada2_derep(non_empty_reads)
 
-	identity(rdada2_derep.out)
+	//identity(rdada2_derep.out)
 
 	
 	rdada2_derep.out
