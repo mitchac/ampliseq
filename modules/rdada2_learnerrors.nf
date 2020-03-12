@@ -6,16 +6,15 @@ process rdada2_learnerrors {
     tuple file(R1), file(R2)
 
     output:
-        tuple file(R1), file("${R1.getSimpleName()}.rds")
+    file("${R1.getSimpleName()}.rds")
         
     script:
     """
     #!/usr/bin/env Rscript
     library('dada2');
 
-    ddR <- dada('${R1}', '${R1_err}', multithread=multithread, verbose=FALSE);
-    saveRDS(derep_1, '${R1.getSimpleName()}.rds');
+    errF <- learnErrors('${R1}', multithread=multithread)
+    saveRDS(errF, '${R1.getSimpleName()}.rds');
 
-   
     """
 }
