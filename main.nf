@@ -362,6 +362,8 @@ workflow {
 
 	rdada2_derep(non_empty_reads)
 
+	identity(rdada2_derep.out)
+
 	
 	rdada2_derep.out
 		.mix(rdada2_learnerrors.out)
