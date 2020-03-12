@@ -1,5 +1,6 @@
 #!/usr/bin/env nextflow
 nextflow.preview.dsl=2
+echo true
 /*
 ========================================================================================
 						 nf-core/ampliseq

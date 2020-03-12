@@ -5,7 +5,7 @@ process identity {
 			tuple file(f1), file(f1)
 
 			output:
-			//file "*"
+			file "${f1}"
 
 			script: 
 			"""
