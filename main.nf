@@ -301,9 +301,10 @@ include qiime_import from './modules/qiime_import.nf'
 include qiime_demux_visualize from './modules/qiime_demux_visualize.nf'
 include dada_trunc_parameter from './modules/dada_trunc_parameter.nf'
 include dada_single from './modules/dada_single.nf'
-include rtest from './modules/rtest.nf'
-include rdada from './modules/rdada.nf'
-include dada_err from './modules/dada_err.nf'
+//include rtest from './modules/rtest.nf'
+include rdada2_filterandtrim from './modules/rdada2_filterandtrim.nf'
+include rdada2_derep from './modules/rdada2_derep.nf'
+include rdada2_denoise from './modules/rdada2_denoise.nf'
 
 workflow {
 
@@ -345,20 +346,16 @@ workflow {
 		//.map { name, forward, reverse -> [ name +","+ forward + ",forward\n" + name +","+ reverse +",reverse" ] } //prepare basic synthax
 		.set { trimmed_reads }
 
+	//rtest()
+	rdada2_filterandtrim(trimmed_reads)
 
+	rdada2_filterandtrim.out
+    	.filter {
+        	r -> ( !file(r[0]).isEmpty() & !file(r[1]).isEmpty() )
+    		}
+    	.set { non_empty_reads }
 
-	rtest()
-	rdada(trimmed_reads)
-
-
-
-	rdada.out
-    .filter {
-        r -> ( !file(r[0]).isEmpty() & !file(r[1]).isEmpty() )
-    }
-    .set { non_empty_reads }
-
-	dada_err(non_empty_reads)
+	rdada2_derep(non_empty_reads)
 
 }	
 

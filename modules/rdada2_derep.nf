@@ -1,4 +1,4 @@
-process dada_err {
+process rdada2_derep {
     publishDir "${params.outdir}/rdada_derep", mode: 'copy'
     container 'golob/dada2:1.12.0.ub.1804__bcw.0.3.1'
 

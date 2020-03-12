@@ -1,4 +1,4 @@
-process rdada {
+process rdada2_filterandtrim {
     publishDir "${params.outdir}/rdada", mode: 'copy'
     //conda 'bioconda::bioconductor-dada2'
     //container 'biocontainers/bioconductor-dada2'
