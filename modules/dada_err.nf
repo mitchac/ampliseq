@@ -6,7 +6,7 @@ process dada_err {
     tuple file(R1), file(R2)
 
     output:
-        tuple file("${R1.getSimpleName()}.dada2.ft.derep.rds"), file("${R2.getSimpleName()}.dada2.ft.derep.rds")
+        tuple file(R1), file("${R1.getSimpleName()}.dada2.ft.derep.rds"), file(R2), file("${R2.getSimpleName()}.dada2.ft.derep.rds")
         
     script:
     """
