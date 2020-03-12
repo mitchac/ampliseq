@@ -1,5 +1,5 @@
 process rdada2_learnerrors {
-    publishDir "${params.outdir}/rdada_learnerrors", mode: 'copy'
+    publishDir "${params.outdir}/rdada2_learnerrors", mode: 'copy'
     container 'golob/dada2:1.12.0.ub.1804__bcw.0.3.1'
 
     input:
