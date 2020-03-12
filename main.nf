@@ -358,6 +358,19 @@ workflow {
 
 	rdada2_learnerrors(non_empty_reads)
 	rdada2_derep(non_empty_reads)
+
+	
+	rdada2_derep.out
+		.mix(rdada2_learnerrors.out)
+    	.map { file ->
+        	//def key = file.name.toString().tokenize('_').get(0)
+			def key = file.getSimpleName()
+        	return tuple(key, file)
+     	}
+    	.groupTuple()
+    	.set{ groups_ch }
+
+
 	//rdada2_denoise(rdada2_derep.out)
 
 }	
