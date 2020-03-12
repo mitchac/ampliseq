@@ -1,5 +1,5 @@
 process identity {
-			publishDir "${params.outdir}/identity", mode: 'copy',
+			publishDir "${params.outdir}/identity", mode: 'copy'}
 			
 			input:
 			tuple file(f1), file(f1)
