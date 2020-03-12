@@ -371,7 +371,7 @@ workflow {
         	return tuple(key, file)
      	}
     	.groupTuple()
-		.map { tuple(key, file) -> file
+		.map { key, file -> file
      	}
     	.set{ groups_ch }
 
