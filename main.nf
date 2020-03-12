@@ -364,7 +364,7 @@ workflow {
 
 	identity(rdada2_derep.out)
 
-	
+	/*
 	rdada2_derep.out
 		.mix(rdada2_learnerrors.out)
     	.map { file ->
@@ -376,7 +376,7 @@ workflow {
 		.map { key, file -> file
      	}
     	.set{ groups_ch }
-
+	*/
 
 	//identity(groups_ch)
 
