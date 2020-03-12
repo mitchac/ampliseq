@@ -9,6 +9,6 @@ process identity {
 
 			script: 
 			"""
-			echo ${f1} >> ${f1}
+			echo 'test' >> ${f1}
 			"""
 		}
