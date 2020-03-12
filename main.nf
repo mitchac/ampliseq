@@ -356,6 +356,7 @@ workflow {
     	.set { non_empty_reads }
 
 	rdada2_derep(non_empty_reads)
+	rdada2_denoise(rdada2_derep.out)
 
 }	
 

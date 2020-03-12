@@ -6,16 +6,16 @@ process rdada2_denoise {
     tuple file(R1), file(R1_err), file(R2), file(R2_err)
 
     output:
-        tuple file(R1), file("${R1.getSimpleName()}.dada2.ft.derep.rds"), file(R2), file("${R2.getSimpleName()}.dada2.ft.derep.rds")
+        tuple file(R1), file("${R1.getSimpleName()}.rds")
         
     script:
     """
     #!/usr/bin/env Rscript
     library('dada2');
-    derep_1 <- derepFastq('${R1}');
-    saveRDS(derep_1, '${R1.getSimpleName()}.dada2.ft.derep.rds');
-    derep_2 <- derepFastq('${R2}');
-    saveRDS(derep_2, '${R2.getSimpleName()}.dada2.ft.derep.rds');
+
+    ddR <- dada(${R1}, ${R1_err}, multithread=multithread, verbose=FALSE);
+    saveRDS(derep_1, '${R1.getSimpleName()}.rds');
+
    
     """
 }
