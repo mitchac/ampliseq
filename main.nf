@@ -372,7 +372,7 @@ workflow {
     	.set{ groups_ch }
 
 
-	rdada2_denoise(rdada2_derep.out)
+	rdada2_denoise(groups_ch)
 
 }	
 
