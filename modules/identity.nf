@@ -6,6 +6,8 @@ process identity {
 
 			output:
 			file "${f1}"
+            file "${f2}"
+            file "${f3}"
 
 			script: 
 			"""
