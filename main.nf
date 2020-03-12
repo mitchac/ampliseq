@@ -354,7 +354,6 @@ workflow {
     	.filter {
         	r -> ( !file(r[0]).isEmpty() & !file(r[1]).isEmpty() )
     		}
-		.toSortedList()
     	.set { non_empty_reads }
 
 	rdada2_learnerrors(non_empty_reads)
