@@ -377,9 +377,9 @@ workflow {
     	.set{ groups_ch }
 	
 
-	identity(groups_ch)
+	//identity(groups_ch)
 
-	//rdada2_denoise(groups_ch)
+	rdada2_denoise(groups_ch)
 
 }	
 
