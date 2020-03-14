@@ -11,6 +11,6 @@ process identity {
 			script: 
 			"""
             echo ${files[0]}
-            echo ${files1]}
+            echo ${files[1]}
 			"""
 		}
