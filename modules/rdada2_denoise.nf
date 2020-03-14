@@ -6,7 +6,7 @@ process rdada2_denoise {
     tuple key, file(files)
 
     output:
-        //tuple file(R1), file("${files[0].getSimpleName()}dns.rds")
+    tuple file("${files[0].getSimpleName()}.dns.rds")
         
     script:
     """
