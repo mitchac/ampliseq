@@ -16,8 +16,8 @@ process rdada2_denoise {
     derep <- readRDS('${files[0]}');
     lerr <- readRDS('${files[1]}');
 
-    #ddR <- dada(derep, lerr, multithread=multithread, verbose=FALSE);
-    #saveRDS(ddR, '${files[0].getSimpleName()}.dns.rds');
+    ddR <- dada(derep, lerr, multithread=multithread, verbose=FALSE);
+    saveRDS(ddR, '${files[0].getSimpleName()}.dns.rds');
 
    
     """
