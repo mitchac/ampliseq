@@ -375,7 +375,7 @@ workflow {
      	}
     	.groupTuple()
 		.flatten()
-		.map { key, derep, lerr -> derep, lerr}
+		//.map { key, derep, lerr -> derep, lerr}
     	.set{ groups_ch }
 	
 
