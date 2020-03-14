@@ -6,7 +6,7 @@ process rdada2_denoise {
     tuple key, file(files)
 
     output:
-        tuple file(R1), file("${files[0].getSimpleName()}dns.rds")
+        //tuple file(R1), file("${files[0].getSimpleName()}dns.rds")
         
     script:
     """
@@ -16,8 +16,8 @@ process rdada2_denoise {
     derep <- readRDS('${files[0]}');
     lerr <- readRDS('${files[1]}');
 
-    ddR <- dada(derep, lerr, multithread=multithread, verbose=FALSE);
-    saveRDS(derep_1, '${files[0].getSimpleName()}.dns.rds');
+    #ddR <- dada(derep, lerr, multithread=multithread, verbose=FALSE);
+    #saveRDS(ddR, '${files[0].getSimpleName()}.dns.rds');
 
    
     """
