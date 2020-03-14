@@ -2,7 +2,7 @@ process identity {
 			publishDir "${params.outdir}/identity", mode: 'copy'
 			
 			input:
-			i1
+			set i1
 
 			output:
 			//file "${i1}"
