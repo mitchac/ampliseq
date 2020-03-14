@@ -10,7 +10,7 @@ process identity {
 
 			script: 
 			"""
-            echo ${i2[0]}
+            echo ${i1}
             echo ${i2}
 			"""
 		}

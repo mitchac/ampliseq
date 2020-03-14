@@ -374,6 +374,8 @@ workflow {
         	return tuple(key, file)
      	}
     	.groupTuple()
+		.flatten()
+		.map { key, derep, lerr -> derep, lerr}
     	.set{ groups_ch }
 	
 
