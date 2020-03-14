@@ -8,6 +8,7 @@ process rdada2_learnerrors {
 
     output:
     file("${R1.getSimpleName()}.lerr.rds")
+    file("${R2.getSimpleName()}.lerr.rds")
         
     script:
     """
@@ -16,6 +17,8 @@ process rdada2_learnerrors {
 
     errF <- learnErrors('${R1}')
     saveRDS(errF, '${R1.getSimpleName()}.lerr.rds');
+    errF <- learnErrors('${R2}')
+    saveRDS(errF, '${R2.getSimpleName()}.lerr.rds');
 
     """
 }
