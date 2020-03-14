@@ -2,7 +2,7 @@ process identity {
 			publishDir "${params.outdir}/identity", mode: 'copy'
 			
 			input:
-			set i1
+			tuple key, file(files)
 
 			output:
 			//file "${i1}"
@@ -10,7 +10,7 @@ process identity {
 
 			script: 
 			"""
-            echo ${i1[1][0]}
-            echo ${i1[1][1]}
+            echo ${files[0]}
+            echo ${files1]}
 			"""
 		}
