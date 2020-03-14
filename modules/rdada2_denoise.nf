@@ -13,7 +13,7 @@ process rdada2_denoise {
     #!/usr/bin/env Rscript
     library('dada2');
 
-    ddR <- dada('${files[0]}', '${files[0]}', multithread=multithread, verbose=FALSE);
+    ddR <- dada('${files[0]}', '${files[1]}', multithread=multithread, verbose=FALSE);
     saveRDS(derep_1, '${files[0].getSimpleName()}dns.rds');
 
    
