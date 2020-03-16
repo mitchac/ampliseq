@@ -383,6 +383,21 @@ workflow {
 
 	rdada2_denoise(groups_ch)
 
+	rdada2_denoise.out
+		.mix(rdada2_learnerrors.out)
+		.flatten()
+    	.map { file ->
+        	def key = file.name.toString().tokenize('_').get(0)
+			//def key = file.name.getSimpleName()
+        	return tuple(key, file)
+     	}
+    	.groupTuple()
+		//.flatten()
+		//.map { key, derep, lerr -> derep, lerr}
+    	.set{ merge_in_ch }
+
+
+
 }	
 
 
