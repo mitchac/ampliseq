@@ -23,7 +23,7 @@ process rdada2_merge {
         R2dns, R2lerr,
         verbose=TRUE,
     );
-    saveRDS(merger, "${R1.getSimpleName()}merged.rds");
+    saveRDS(merger, "${R1dns.getSimpleName()}merged.rds");
 
    
     """
