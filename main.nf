@@ -311,7 +311,6 @@ include identity from './modules/identity.nf'
 
 include rdada2_merge from './modules/rdada2_merge.nf'
 
-rdada2_merge
 
 workflow {
 
@@ -397,7 +396,7 @@ workflow {
     	.groupTuple()
     	.set{ merge_in_ch }
 
-
+	rdada2_merge(merge_in_ch)
 
 }	
 
