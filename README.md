@@ -14,7 +14,7 @@
 
 [![Joins us on Slack](https://img.shields.io/badge/slack-nfcore/ampliseq-blue.svg)](https://nfcore.slack.com/channels/ampliseq)
 
-## Introduction
+## IntroductionZZZ
 
 **nfcore/ampliseq** is a bioinformatics analysis pipeline used for 16S rRNA amplicon sequencing data.
 
